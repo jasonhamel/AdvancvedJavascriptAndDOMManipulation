@@ -2,9 +2,11 @@ let buttons = document.querySelectorAll(".drum");
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("keydown", function (event) {
     mapSounds(event.key);
+    animateButton(event.key);
   });
   buttons[i].addEventListener("click", function () {
     mapSounds(this.innerHTML);
+    animateButton(this.innerHTML);
   });
 }
 
@@ -34,4 +36,12 @@ function mapSounds(buttonClicked) {
       break;
   }
   sound.play();
+}
+
+function animateButton(key) {
+  var button = document.querySelector("." + key);
+  button.classList.add("pressed");
+  setTimeout(function () {
+    button.classList.remove("pressed");
+  }, 0.1);
 }
